@@ -99,4 +99,68 @@ function deleteEmployeeByMaNhanVien($MaNhanVien) {
 
     return $result; // Trả về true nếu xóa thành công, ngược lại trả về false
 }
+function isLoggedIn($username) {
+    $conn = connectDB();
+
+    $sql = "SELECT * FROM taikhoan WHERE Username='$username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+    $conn->close();
+}
+function logoutUser() {
+    // Bắt đầu phiên làm việc
+    session_start();
+
+    // Xóa tất cả các biến phiên
+    $_SESSION = array();
+
+    // Hủy phiên
+    session_destroy();
+
+    // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính
+    header("Location: login.php");
+    exit();
+}
+function createAccount($username, $password, $email) {
+    // Khởi tạo kết nối đến cơ sở dữ liệu
+    $conn = connectDB();
+
+    // Kiểm tra kết nối
+    if ($conn->connect_error) {
+        die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
+    }
+
+    // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng tài khoản
+    $sql = "INSERT INTO taikhoan (Username, Password, Email, LoaiTaiKhoan) VALUES ('$username', '$password', '$email', 'customer')";
+
+    // Thực thi câu lệnh SQL và kiểm tra kết quả
+    if ($conn->query($sql) === TRUE) {
+        echo "Tạo tài khoản mới thành công!";
+    } else {
+        echo "Lỗi: " . $sql . "<br>" . $conn->error;
+    }
+
+    // Đóng kết nối đến cơ sở dữ liệu
+    $conn->close();
+}
+// Model
+// function registerUser($username, $password, $email) {
+//         // Thực hiện thêm tài khoản mới vào cơ sở dữ liệu với loại tài khoản là 'customer'
+//         $conn = connectDB();
+//         $sql = "INSERT INTO taikhoan (username, password, LoaiTaiKhoan, email) VALUES (?, ?, 'customer', ?)";
+//         $stmt = mysqli_prepare($conn, $sql);
+//         mysqli_stmt_bind_param($stmt, "sss", $username, $password, $email);
+//         $result = mysqli_stmt_execute($stmt);
+//         mysqli_stmt_close($stmt);
+//         mysqli_close($conn);
+
+//         return $result;
+// }
+
 ?>

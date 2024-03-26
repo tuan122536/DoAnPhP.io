@@ -1,0 +1,217 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease; /* Thêm hiệu ứng trượt mượt */
+}
+.background1 {
+    background-image: url('images/background_amd.jpg');
+}
+.background2 {
+    background-image: url('images/background_aorus.jpg');
+}
+.background3 {
+    background-image: url('images/background_msi.jpg');
+}
+.background4 {
+    background-image: url('images/background_intel.jpg');
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+.product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.product img {
+    width: 100%;
+    border-radius: 5px;
+}
+.product h2 {
+    margin-top: 10px;
+}
+.product p {
+    margin: 10px 0;
+}
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+header {
+    background-color: rgba(0, 0, 0, 0.6); /* Màu nền đen với độ trong suốt 0.6 */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center; /* Căn giữa nội dung */
+    background-size: cover; /* Chỉnh kích thước background */
+    background-position: top; /* Vị trí của background */
+    background-repeat: no-repeat; /* Không lặp lại background */
+}
+/* Định dạng dropdown */
+.dropdown {
+    position: relative;
+    display: inline-flex; /* Để căn giữa */
+    justify-content: center; /* Để căn giữa */
+}
+
+/* Button trigger dropdown */
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown content (ẩn mặc định) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: auto; /* Thay đổi chiều rộng tự động */
+    white-space: nowrap; /* Ngăn chặn ngắt dòng */
+    z-index: 1;
+}
+
+/* Hiển thị dropdown content khi hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Link trong dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block; /* Hiển thị các mục liên kết ngang */
+}
+
+/* Thay đổi màu link khi hover */
+/* .dropdown-content a:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+} */
+
+/* Định dạng footer, container và các phần khác (có thể thêm vào) */
+footer, .container {
+    /* Định dạng footer và container ở đây */
+}
+.dropdown-content a img {
+    width: 100px; /* Đặt chiều rộng của hình ảnh */
+    height: auto; /* Giữ tỉ lệ khung hình */
+    margin-right: 10px; /* Tạo khoảng cách giữa hình ảnh và văn bản */
+}
+.product-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Canh giữa dọc */
+}
+
+.product-text {
+    display: block; /* Hiển thị trên một dòng riêng biệt */
+    color: #fff;
+    text-align: center; /* Căn giữa ngang */
+    margin-top: 5px; /* Khoảng cách giữa hình và chữ */
+}
+.product-link:hover .product-text {
+    color: #ffd700; /* Màu chữ khi hover */
+}
+.login-btn {
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 8px 16px; /* Kích thước padding */
+    border: none; /* Loại bỏ viền */
+    border-radius: 4px; /* Bo tròn góc */
+    cursor: pointer; /* Hiệu ứng chuột khi di chuột qua */
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    top: 10px; /* Khoảng cách từ phía trên */
+    right: 10px; /* Khoảng cách từ phía bên phải */
+    text-decoration: none; /* Loại bỏ gạch chân dưới */
+}
+
+.login-btn:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+/* CSS cho các phần tử chung */
+.user-actions {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cart-icon-btn {
+    margin-left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cart-icon-btn:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+/* CSS cho mẫu đăng nhập */
+.login-form button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-form button:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+/* CSS cho mẫu đăng xuất */
+
+.logout-form button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-form button:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+}
+
+
+

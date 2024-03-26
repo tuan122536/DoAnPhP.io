@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Truy vấn kiểm tra thông tin đăng nhập
     $conn = connectDB();
-    $sql = "SELECT * FROM TaiKhoan WHERE TenTaiKhoan='$username' AND MatKhau='$password'";
+    $sql = "SELECT * FROM TaiKhoan WHERE Username='$username' AND Password='$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Chuyển hướng dựa trên loại tài khoản
         if ($loaiTaiKhoan == 'admin') {
-            header("Location: index.php"); // Chuyển hướng đến trang chính cho admin
+            header("Location: home.php"); // Chuyển hướng đến trang chính cho admin
         } else if ($loaiTaiKhoan == 'user') {
             header("Location: userindex.php"); // Chuyển hướng đến trang chính cho người dùng
         }
@@ -34,5 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $conn->close();
 }
+
 ?>
 

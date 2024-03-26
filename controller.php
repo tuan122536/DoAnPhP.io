@@ -56,14 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-function getGenderImage($gender) {
-    if ($gender == 'Nam') {
-        return 'images/nam_logo.png'; // Đường dẫn tới hình ảnh biểu tượng giới tính nam
-    } elseif ($gender == 'Nu') {
-        return 'images/nu_logo.png'; // Đường dẫn tới hình ảnh biểu tượng giới tính nữ
-    } else {
-        return 'other.png'; // Đường dẫn tới hình ảnh biểu tượng giới tính khác
-    }
-}
+
 ?>
 

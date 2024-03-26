@@ -134,8 +134,6 @@
         echo 'Không có nhân viên nào.';
     }
     ?>
-    <form action="logout.php" method="post">
-        <button type="submit">Đăng xuất</button>
-    </form>
+
 </body>
 </html>

@@ -3,28 +3,20 @@ const productContents = [
     // Nội dung sản phẩm cho background 1
     [
         {
-            name: "Graphics Card AORUS RTX 3080",
-            price: "$899",
-            description: "Description for Graphics Card AORUS RTX 3080."
+       
         },
         {
-            name: "Keyboard AORUS K7",
-            price: "$149",
-            description: "Description for Keyboard AORUS K7."
+        
         }
         // Thêm các sản phẩm khác nếu cần
     ],
     // Nội dung sản phẩm cho background 2
     [
         {
-            name: "Graphics Card AORUS RTX 3080 (Customized)",
-            price: "$999",
-            description: "Description for Customized Graphics Card AORUS RTX 3080."
+           
         },
         {
-            name: "Mouse AORUS M5",
-            price: "$79",
-            description: "Description for Mouse AORUS M5."
+        
         }
         // Thêm các sản phẩm khác nếu cần
     ],

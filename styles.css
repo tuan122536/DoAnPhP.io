@@ -30,31 +30,51 @@ nav a {
     text-decoration: none;
     margin: 0 10px;
 }
-.container {
+
+.product-container {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 40px auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 20px;
+    display: flex; /* Hiển thị các sản phẩm theo hàng ngang */
+    flex-wrap: wrap; /* Cho phép các sản phẩm wrap sang hàng mới khi không đủ không gian */
+    justify-content: space-between; /* Canh chỉnh các sản phẩm để chúng căn đều và giữa khoảng trống giữa chúng */
 }
+
 .product {
+    position: relative; /* Đặt vị trí tương đối để các phần tử con có thể sử dụng vị trí tuyệt đối */
+    max-width: 400px; /* Đặt chiều rộng tối đa của mỗi ô sản phẩm */
+    width: calc(20% - 20px); /* Đảm bảo mỗi sản phẩm chiếm 20% chiều rộng của container và có khoảng cách 20px giữa các sản phẩm */
+    margin-bottom: 40px; /* Tạo khoảng cách dưới của mỗi sản phẩm */
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 10px;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
 }
+
+
 .product img {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
-.product h2 {
-    margin-top: 10px;
+
+
+.product button {
+    position: absolute; /* Đặt vị trí tuyệt đối để nút luôn nằm ở dưới cùng */
+    bottom: 0; /* Đặt nút ở dưới cùng */
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #161616;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 0 5px 5px;
+    transition: background-color 0.3s;
 }
-.product p {
-    margin: 10px 0;
+
+.product button:hover {
+    background-color: #4e4e4e;
 }
+
 footer {
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
@@ -212,6 +232,7 @@ footer, .container {
 .logout-form button:hover {
     background-color: rgba(128, 128, 128, 0.7);
 }
+
 
 
 

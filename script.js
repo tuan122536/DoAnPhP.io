@@ -45,3 +45,4 @@ setInterval(() => {
         product.querySelector('.description').textContent = `Description: ${productContent.description}`;
     });
 }, 5000); // Thay đổi background mỗi 5 giây
+

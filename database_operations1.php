@@ -137,7 +137,7 @@ function createAccount($username, $password, $email) {
     }
 
     // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng tài khoản
-    $sql = "INSERT INTO taikhoan (Username, Password, Email, LoaiTaiKhoan) VALUES ('$username', '$password', '$email', 'customer')";
+    $sql = "INSERT INTO users (Username, Password, Email, UserType) VALUES ('$username', '$password', '$email', 'customer')";
 
     // Thực thi câu lệnh SQL và kiểm tra kết quả
     if ($conn->query($sql) === TRUE) {
@@ -162,5 +162,40 @@ function createAccount($username, $password, $email) {
 
 //         return $result;
 // }
+function isUsernameExists($username) {
+    // Kết nối đến cơ sở dữ liệu
+    $conn = connectDB();
 
+    // Truy vấn SQL kiểm tra username
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+
+    // Kiểm tra số lượng bản ghi trả về
+    $count = mysqli_num_rows($result);
+
+    // Đóng kết nối đến cơ sở dữ liệu
+    mysqli_close($conn);
+
+    // Nếu tồn tại ít nhất một bản ghi, username đã tồn tại
+    return $count > 0;
+}
+
+// Hàm kiểm tra xem email đã tồn tại hay chưa
+function isEmailExists($email) {
+    // Kết nối đến cơ sở dữ liệu
+    $conn = connectDB();
+
+    // Truy vấn SQL kiểm tra email
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+
+    // Kiểm tra số lượng bản ghi trả về
+    $count = mysqli_num_rows($result);
+
+    // Đóng kết nối đến cơ sở dữ liệu
+    mysqli_close($conn);
+
+    // Nếu tồn tại ít nhất một bản ghi, email đã tồn tại
+    return $count > 0;
+}
 ?>

@@ -1,5 +1,5 @@
 <?php
-// database_operations.php
+// database_operations1.php
 
 function connectDB() {
     $servername = "localhost";
@@ -197,5 +197,46 @@ function isEmailExists($email) {
 
     // Nếu tồn tại ít nhất một bản ghi, email đã tồn tại
     return $count > 0;
+}
+function getProducts() {
+    // Kết nối tới cơ sở dữ liệu
+    $conn = connectDB();
+
+    // Truy vấn để lấy danh sách sản phẩm
+    $sql = "SELECT * FROM Products";
+    $result = mysqli_query($conn, $sql);
+
+    // Kiểm tra xem có sản phẩm nào được tìm thấy không
+    if ($result && mysqli_num_rows($result) > 0) {
+        $products = array();
+        // Lấy danh sách sản phẩm từ kết quả truy vấn
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Kiểm tra nếu cột Image không trống
+            // if (!empty($row['Image'])) {
+            //     // Chuyển dữ liệu ảnh sang chuỗi base64
+            //     $imageData = base64_encode($row['Image']);
+            // } else {
+            //     // Gán cho imageData là chuỗi rỗng nếu cột Image trống
+            //     $imageData = '';
+            // }
+            // Thêm thông tin sản phẩm vào mảng products bao gồm ảnh mã hóa base64
+            $products[] = array(
+                'ProductID' => $row['ProductID'],
+                'Name' => $row['Name'],
+                'Description' => $row['Description'],
+                'Price' => $row['Price'],
+                'Quantity' => $row['Quantity'],
+                'Image' => $row['Image'], // Lưu dữ liệu ảnh dưới dạng base64 hoặc chuỗi rỗng
+                'CategoryID' => $row['CategoryID']
+            );
+        }
+        // Đóng kết nối
+        mysqli_close($conn);
+        return $products;
+    } else {
+        // Đóng kết nối
+        mysqli_close($conn);
+        return array(); // Trả về một mảng rỗng nếu không tìm thấy sản phẩm hoặc có lỗi xảy ra
+    }
 }
 ?>

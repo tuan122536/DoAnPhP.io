@@ -59,7 +59,7 @@ session_start(); // Bắt đầu phiên đăng nhập
             <!-- <button class="login-btn">Login</button> -->
         </nav>
         <div class="user-actions login-actions">
-    <form action="login.html" method="post" class="login-form">
+    <form action="login.php" method="post" class="login-form">
         <button type="submit">Đăng Nhập</button>
     </form>
     <a href="cart.php" class="cart-icon-btn">Cart</a>

@@ -62,7 +62,7 @@ session_start(); // Bắt đầu phiên đăng nhập
         <form action="homecustomer.php" method="post" class="logout-form">
             <button type="submit">Đăng xuất</button>
         </form>
-    <a href="cart.php" class="cart-icon-btn">Cart</a>
+    <a href="cart.html" class="cart-icon-btn">Cart</a>
 </div>
 </form>
     </header>

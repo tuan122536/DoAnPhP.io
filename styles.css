@@ -41,27 +41,19 @@ nav a {
 }
 
 .product {
-    position: relative; /* Đặt vị trí tương đối để các phần tử con có thể sử dụng vị trí tuyệt đối */
-    max-width: 400px; /* Đặt chiều rộng tối đa của mỗi ô sản phẩm */
-    width: calc(20% - 20px); /* Đảm bảo mỗi sản phẩm chiếm 20% chiều rộng của container và có khoảng cách 20px giữa các sản phẩm */
-    margin-bottom: 40px; /* Tạo khoảng cách dưới của mỗi sản phẩm */
+    display: flex;
+    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
+    max-width: 400px;
+    width: calc(20% - 20px);
+    margin-bottom: 40px;
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-
-.product img {
-    width: 100%;
-    border-radius: 5px 5px 0 0;
-}
-
-
 .product button {
-    position: absolute; /* Đặt vị trí tuyệt đối để nút luôn nằm ở dưới cùng */
-    bottom: 0; /* Đặt nút ở dưới cùng */
-    width: 100%;
+    margin-top: auto; /* Đẩy nút xuống dưới cùng */
     padding: 10px;
     border: none;
     background-color: #161616;
@@ -69,6 +61,12 @@ nav a {
     cursor: pointer;
     border-radius: 0 0 5px 5px;
     transition: background-color 0.3s;
+}
+
+
+.product img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
 }
 
 .product button:hover {
@@ -231,6 +229,52 @@ footer, .container {
 
 .logout-form button:hover {
     background-color: rgba(128, 128, 128, 0.7);
+}
+.cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8); /* Màu nền với độ trong suốt */
+    border-radius: 10px; /* Bo tròn viền */
+    padding: 20px; /* Khoảng cách giữa nội dung và viền */
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    margin-bottom: 10px;
+}
+
+.cart-summary {
+    max-width: 800px;
+    margin: -20px auto 20px; /* Áp dụng margin-top âm để loại bỏ khoảng cách giữa cart-container và cart-summary */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bo tròn viền */
+    background-color: rgba(255, 255, 255, 0.8); /* Màu nền với độ trong suốt */
+    padding: 20px; /* Khoảng cách giữa nội dung và viền */
+}
+
+
+#checkout-btn {
+    padding: 10px 20px;
+    background-color: #292a2b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#clear-cart-btn {
+    padding: 10px 20px;
+    background-color: #292a2b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 

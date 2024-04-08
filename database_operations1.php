@@ -82,8 +82,6 @@ function getEmployeeByMaNhanVien($MaNhanVien) {
     return $employee;
 }
 
-// database_operations1.php
-
 function deleteEmployeeByMaNhanVien($MaNhanVien) {
     $conn = connectDB();
 
@@ -128,7 +126,6 @@ function logoutUser() {
     exit();
 }
 function createAccount($username, $password, $email) {
-    // Khởi tạo kết nối đến cơ sở dữ liệu
     $conn = connectDB();
 
     // Kiểm tra kết nối
@@ -237,6 +234,37 @@ function getProducts() {
         // Đóng kết nối
         mysqli_close($conn);
         return array(); // Trả về một mảng rỗng nếu không tìm thấy sản phẩm hoặc có lỗi xảy ra
+    }
+}
+function getProductsToAjax() {
+    // Kết nối đến cơ sở dữ liệu
+    $conn = connectDB();
+
+    // Truy vấn để lấy dữ liệu sản phẩm từ bảng Products
+    $sql = "SELECT * FROM Products";
+    $result = mysqli_query($conn, $sql);
+
+    // Kiểm tra kết quả trả về từ truy vấn
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Khởi tạo một mảng để lưu trữ dữ liệu sản phẩm
+        $products = array();
+
+        // Lặp qua các hàng kết quả và thêm dữ liệu sản phẩm vào mảng
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+
+        // Đóng kết nối
+        mysqli_close($conn);
+
+        // Trả về mảng chứa dữ liệu sản phẩm
+        return $products;
+    } else {
+        // Đóng kết nối
+        mysqli_close($conn);
+
+        // Trả về một mảng rỗng nếu không có sản phẩm nào được tìm thấy hoặc có lỗi xảy ra
+        return array();
     }
 }
 ?>

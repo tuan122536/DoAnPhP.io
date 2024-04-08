@@ -67,41 +67,10 @@ session_start(); // Bắt đầu phiên đăng nhập
 </form>
     </header>
     <div class="container">
-    <div class="product-container"> <!-- Thêm class product-container ở đây -->
-    <?php
-    // Include file chứa hàm từ database_operations1.php
-    include_once 'database_operations1.php';
-
-    // Lấy danh sách sản phẩm từ cơ sở dữ liệu
-    $products = getProducts();
-
-    // Kiểm tra nếu không có sản phẩm
-    if (empty($products)) {
-        echo "<p>Không có sản phẩm nào được tìm thấy.</p>";
-    } else {
-        // Hiển thị sản phẩm trong HTML
-        foreach ($products as $product) {
-            echo '<div class="product">';
-            // Kiểm tra xem ảnh có tồn tại không trước khi hiển thị
-            if (!empty($product['Image'])) {
-                // Đường dẫn tới hình ảnh
-                $imageSrc = 'data:image;base64,' . $product['Image'];
-                echo '<img src="' . $imageSrc . '" alt="' . $product['Name'] . '">';
-            } else {
-                // Sử dụng ảnh mặc định nếu không có ảnh
-                echo '<img src="images/product_card_aorus.png" alt="' . $product['Name'] . '">';
-            }
-            echo '<h2>' . $product['Name'] . '</h2>';
-            echo '<p>Price: $' . $product['Price'] . '</p>';
-            echo '<p>Description: ' . $product['Description'] . '</p>';
-            echo '<button>Add to Cart</button>';
-            echo '</div>';
-        }
-    }
-    ?>
+    <div class="product-container">
+    
 </div>
 </div>
-
     </div>
     <footer>
         <p>&copy; 2024 AORUS Shop. All rights reserved.</p>

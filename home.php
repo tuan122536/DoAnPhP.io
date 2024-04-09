@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AORUS Shop</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link tới file CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <?php
 include_once 'database_operations1.php'; // Bao gồm file chứa hàm kiểm tra đăng nhập

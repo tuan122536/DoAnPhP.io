@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'database_operations1.php';
 
 // Khởi tạo biến thông báo lỗi
@@ -20,14 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailExistsMessage = "Email đã được sử dụng. Vui lòng sử dụng email khác!";
     }
 
-    // Nếu không có lỗi, tạo tài khoản mới và hiển thị thông báo thành công
+    // Nếu không có lỗi, tạo tài khoản mới
     if (empty($usernameExistsMessage) && empty($emailExistsMessage)) {
         createAccount($username, $password, $email);
-        // Hiển thị thông báo tài khoản đã được tạo thành công
-        echo "Tài khoản đã được tạo thành công!";
+        $_SESSION['success_message'] = "Tài khoản đã được tạo thành công!";
+        header("Location: login.php");
+        exit();
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

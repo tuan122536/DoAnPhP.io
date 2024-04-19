@@ -1,3 +1,19 @@
+<?php
+session_start();
+include 'database_operations1.php';
+
+if (!isset($_SESSION['userID'])) {
+    // Nếu người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+    header("Location: login.php");
+    exit;
+}
+
+// Giả sử bạn lấy tên người dùng từ database hoặc đã lưu trong session
+$userName = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
+// Lấy danh sách sản phẩm
+$products = getProducts();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +22,12 @@
     <title>AORUS Shop</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<?php
-include_once 'database_operations1.php'; // Bao gồm file chứa hàm kiểm tra đăng nhập
-
-session_start(); // Bắt đầu phiên đăng nhập
-
-?>
 <body>
-    <header>
-        <h1>AORUS Shop</h1>
-        <nav>
-            <a href="#">Home</a>
-            <div class="dropdown">
+<header>
+    <h1>AORUS Shop</h1>
+    <nav>
+        <a href="#">Home</a>
+        <div class="dropdown">
                 <button class="dropbtn">Products</button>
                 <div class="dropdown-content">
                     <a href="#" class="product-link">
@@ -54,27 +64,62 @@ session_start(); // Bắt đầu phiên đăng nhập
                     <!-- Thêm các sản phẩm khác vào đây -->
                 </div>
             </div>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <!-- <button class="login-btn">Login</button> -->
-        </nav>
-        <div class="user-actions logout-actions">
-        <form action="homecustomer.php" method="post" class="logout-form">
-            <button type="submit">Đăng xuất</button>
-        </form>
-    <a href="cart.html" class="cart-icon-btn">Cart</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <span>Welcome, <?php echo htmlspecialchars($userName); ?> !</span>
+    </nav>
+    <div class="user-actions login-actions">
+    <form action="login.php" method="post" class="login-form">
+        <button type="submit">Login</button>
+    </form>
+    <a href="cart.php" class="cart-icon-btn">Cart</a>
 </div>
-</form>
-    </header>
+</header>
+<!-- Phần nội dung trang tiếp theo... -->
+
     <div class="container">
     <div class="product-container">
-    
-</div>
-</div>
+    <?php
+    // Include file chứa hàm từ database_operations1.php
+    include_once 'database_operations1.php';
+
+    // Lấy danh sách sản phẩm từ cơ sở dữ liệu
+    $products = getProducts();
+
+    // Kiểm tra nếu không có sản phẩm
+    if (empty($products)) {
+        echo "<p>Không có sản phẩm nào được tìm thấy.</p>";
+    } else {
+        // Hiển thị sản phẩm trong HTML
+        foreach ($products as $product) {
+            echo '<div class="product">';
+            // Kiểm tra xem ảnh có tồn tại không trước khi hiển thị
+            if (!empty($product['Image'])) {
+                // Đường dẫn tới hình ảnh
+                $imageSrc = 'data:image;base64,' . $product['Image'];
+                echo '<img src="' . $imageSrc . '" alt="' . $product['Name'] . '">';
+            } else {
+                // Sử dụng ảnh mặc định nếu không có ảnh
+                echo '<img src="images/product_card_aorus.png" alt="' . $product['Name'] . '">';
+            }
+            echo '<h2>' . $product['Name'] . '</h2>';
+            echo '<p>Price: $' . $product['Price'] . '</p>';
+            echo '<p>Description: ' . $product['Description'] . '</p>';
+            // Form thêm vào giỏ hàng
+            echo '<form action="add_to_cart.php" method="post">';
+            echo '<input type="hidden" name="product_id" value="' . $product['ProductID'] . '">';
+            echo '<input type="hidden" name="quantity" value="1" min="1" style="width: 50px;">';
+            echo '<button type="submit" name="add_to_cart">Add to Cart</button>';
+            echo '</form>';
+            echo '</div>';
+        }
+    }
+?>
+    </div>
     </div>
     <footer>
         <p>&copy; 2024 AORUS Shop. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script> <!-- Link tới file JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

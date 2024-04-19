@@ -19,7 +19,6 @@ body {
 .background4 {
     background-image: url('images/background_intel.jpg');
 }
-
 nav {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 10px;
@@ -55,11 +54,12 @@ nav a {
 .product button {
     margin-top: auto; /* Đẩy nút xuống dưới cùng */
     padding: 10px;
+    width: 100%;  /* Đảm bảo nút lấp đầy chiều rộng của container */
     border: none;
     background-color: #161616;
     color: white;
     cursor: pointer;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;  /* Bo tròn các góc dưới cùng của nút */
     transition: background-color 0.3s;
 }
 
@@ -137,9 +137,7 @@ header {
 } */
 
 /* Định dạng footer, container và các phần khác (có thể thêm vào) */
-footer, .container {
-    /* Định dạng footer và container ở đây */
-}
+
 .dropdown-content a img {
     width: 100px; /* Đặt chiều rộng của hình ảnh */
     height: auto; /* Giữ tỉ lệ khung hình */
@@ -203,6 +201,7 @@ footer, .container {
 /* CSS cho mẫu đăng nhập */
 .login-form button {
     background-color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -218,6 +217,7 @@ footer, .container {
 
 .logout-form button {
     background-color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -229,63 +229,7 @@ footer, .container {
 .logout-form button:hover {
     background-color: rgba(128, 128, 128, 0.7);
 }
-.cart-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px; /* Bạn chỉ cần đặt padding ở đây */
-    border: 1px solid #ccc;
-    border-radius: 10px; /* Bạn chỉ cần đặt border-radius ở đây */
-    background-color: rgba(255, 255, 255, 0.8); /* Màu nền với độ trong suốt */
-}
 
-.cart-summary {
-    max-width: 800px;
-    margin: -20px auto 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px; /* Bo tròn viền */
-    background-color: rgba(255, 255, 255, 0.8); /* Màu nền với độ trong suốt */
-    padding: 20px; /* Khoảng cách giữa nội dung và viền */
-}
-
-
-#checkout-btn {
-    padding: 10px 20px;
-    background-color: #292a2b;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-#clear-cart-btn {
-    padding: 10px 20px;
-    background-color: #292a2b;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.remove-btn {
-    width: 20px; 
-    height: 15px;
-    margin-left: 10px;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-.cart-item {
-    margin-bottom: 10px;
-    display: flex; /* Sử dụng flexbox để dễ dàng điều chỉnh layout */
-    align-items: center; /* Căn chỉnh các phần tử con theo chiều dọc */
-}
-
-.cart-item > * {
-    margin-bottom: 5px; /* Áp dụng margin-bottom cho tất cả các phần tử con */
-}
-.cart-item input[type="number"] {
-    width: 30px; /* Điều chỉnh kích thước của number box */
-    margin-left: auto;
-}
 
 
 

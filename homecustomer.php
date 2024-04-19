@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AORUS Shop</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link tới file CSS -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <?php
-include_once 'database_operations1.php'; // Bao gồm file chứa hàm kiểm tra đăng nhập
+include_once 'database_operations1.php'; 
 
 session_start(); // Bắt đầu phiên đăng nhập
 
 ?>
+<style>
+    #clear-cart-btn,
+    #checkout-btn {
+            display: none;
+}
+</style>
 <body>
     <header>
         <h1>AORUS Shop</h1>
@@ -60,7 +66,7 @@ session_start(); // Bắt đầu phiên đăng nhập
         </nav>
         <div class="user-actions login-actions">
     <form action="login.php" method="post" class="login-form">
-        <button type="submit">Đăng Nhập</button>
+        <button type="submit">Login</button>
     </form>
     <a href="cart.php" class="cart-icon-btn">Cart</a>
 </div>

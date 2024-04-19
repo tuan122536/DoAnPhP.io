@@ -267,4 +267,116 @@ function getProductsToAjax() {
         return array();
     }
 }
+
+// Hàm thêm dữ liệu từ giỏ hàng vào cơ sở dữ liệu
+// function saveCartData($data) {
+//     // Kết nối đến cơ sở dữ liệu
+//     $conn = connectDB();
+
+//     // Trích xuất dữ liệu từ mảng
+//     $customer_id = $data['customer_id'];
+//     $order_date = date('Y-m-d'); // Lấy ngày hiện tại
+//     $shipping_address = $data['shipping_address'];
+//     $payment_method = $data['payment_method'];
+//     $order_status = 'pending'; // Mặc định trạng thái đơn hàng là pending
+//     $total_amount = $data['total_amount'];
+
+//     // Xây dựng truy vấn SQL để thêm dữ liệu vào bảng orders
+//     $sql = "INSERT INTO orders (customer_id, order_date, shipping_address, payment_method, order_status, total_amount)
+//             VALUES ('$customer_id', '$order_date', '$shipping_address', '$payment_method', '$order_status', '$total_amount')";
+
+//     // Thực hiện truy vấn
+//     if ($conn->query($sql) === TRUE) {
+//         // Đóng kết nối
+//         $conn->close();
+//         return true; // Trả về true nếu thêm dữ liệu thành công
+//     } else {
+//         // Đóng kết nối
+//         $conn->close();
+//         return false; // Trả về false nếu có lỗi khi thêm dữ liệu
+//     }
+// }
+function getCartItems($userId) {
+    $conn = connectDB();  // Đảm bảo hàm này trả về kết nối hợp lệ
+    if (!$conn) {
+        // Xử lý lỗi kết nối tại đây
+        return null;
+    }
+
+    $sql = "SELECT 
+            p.Name AS productName,
+            c.quantity, 
+            p.Price AS price,
+            p.productID AS productId,
+            p.Description AS description
+        FROM cart_items c
+        JOIN products p ON c.product_id = p.productID
+        WHERE c.user_id = ?;";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        // Xử lý lỗi khi chuẩn bị câu truy vấn
+        $conn->close();
+        return null;
+    }
+
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $cartItems = [];
+    while ($row = $result->fetch_assoc()) {
+        $cartItems[] = $row;
+    }
+    $stmt->close();
+    $conn->close();
+    return $cartItems;
+}
+
+
+function validateUser($username, $password) {
+    $conn = connectDB();
+
+    // Chuẩn bị một câu lệnh SQL để tránh SQL Injection
+    $stmt = $conn->prepare("SELECT UserID, Password FROM users WHERE Username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        // Kiểm tra mật khẩu (giả sử mật khẩu được lưu dưới dạng hash)
+        if (password_verify($password, $user['Password'])) {
+            $stmt->close();
+            $conn->close();
+            return $user['UserID']; // Trả về UserID nếu đăng nhập thành công
+        }
+    }
+
+    $stmt->close();
+    $conn->close();
+    return false; // Trả về false nếu đăng nhập thất bại
+}
+
+// Hàm xóa sản phẩm khỏi giỏ hàng
+function deleteCartItem($userId, $productId) {
+    $conn = connectDB(); // Đảm bảo hàm này trả về kết nối hợp lệ
+    if (!$conn) {
+        return false; // Xử lý lỗi kết nối
+    }
+
+    $sql = "DELETE FROM cart_items WHERE user_id = ? AND product_id = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        $conn->close();
+        return false; // Xử lý lỗi khi chuẩn bị câu truy vấn
+    }
+
+    $stmt->bind_param("ii", $userId, $productId);
+    $executeResult = $stmt->execute(); // Thực thi câu truy vấn
+    $stmt->close();
+    $conn->close();
+    
+    return $executeResult; // Trả về kết quả của việc thực thi (true nếu thành công, false nếu thất bại)
+}
+
+
 ?>

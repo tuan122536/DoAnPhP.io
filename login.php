@@ -1,4 +1,11 @@
 
+<?php
+session_start();
+if (isset($_SESSION['success_message'])) {
+    echo "<p style='color:green'>" . $_SESSION['success_message'] . "</p>";
+    unset($_SESSION['success_message']);
+}
+?>
 <script>
     function redirectToRegister() {
         window.location.href = "register.php"; // Chuyển hướng đến trang đăng ký
@@ -102,8 +109,6 @@
     <header>
         <h1>Welcom, InfinityShop !</h1>
     </header>
-    
-   <!-- Form đăng nhập -->
    <form id="login-form" action="logincontroller.php" method="post">
     <label for="login-username">Tên người dùng:</label>
     <input type="text" id="login-username" name="login-username" required><br>
